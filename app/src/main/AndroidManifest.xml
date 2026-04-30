@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:name=".MimoTtsApplication"
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_tts_engine"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MimoTTS">
+
+        <!-- TTS 引擎服务 -->
+        <service
+            android:name=".engine.MimoTtsService"
+            android:label="@string/engine_label"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.TTS_SERVICE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.speech.tts"
+                android:resource="@xml/tts_engine" />
+        </service>
+
+        <!-- 常驻后台服务 -->
+        <service
+            android:name=".engine.PersistentService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse" />
+
+        <!-- 主界面 -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.MimoTTS">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

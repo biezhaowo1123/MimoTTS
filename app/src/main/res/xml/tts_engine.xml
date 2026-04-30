@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tts-engine xmlns:android="http://schemas.android.com/apk/res/android"
+    android:settingsActivity="com.mimotts.ui.MainActivity"
+    android:icon="@drawable/ic_tts_engine"
+    android:label="@string/engine_label">
+    <language
+        android:name="zho"
+        android:country="CHN" />
+    <language
+        android:name="eng"
+        android:country="USA" />
+</tts-engine>
